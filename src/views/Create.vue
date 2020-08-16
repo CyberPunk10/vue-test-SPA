@@ -12,8 +12,8 @@
       <div class="chips chips-placeholder" ref="vueChips"></div>
 
       <div class="input-field">
-        <textarea v-model="description" id="description" class="materialize-textarea" maxlength="2048" rows=15></textarea>
-        <label for="description">Textarea</label>
+        <textarea v-model="description" id="description" class="materialize-textarea" maxlength="2048" rows=4></textarea>
+        <label for="description">Description</label>
         <span class="character-counter" style="float: right; font-size: 12px;">{{ description.length }}/2048</span>
       </div>
 
@@ -26,7 +26,7 @@
 <script>
 
 export default {
-  name: 'Create',
+  name: 'create',
   data: () => {
     return {
       description: '',
