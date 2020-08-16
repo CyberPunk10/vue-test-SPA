@@ -1,21 +1,16 @@
 <template lang="pug">
-nav
+nav.bg-color-vue
   .nav-wrapper
-    <router-link to="/" class="brand-logo left">Tasks</router-link>
+    <router-link to="/" class="brand-logo">Tasks</router-link>
     ul(id="nav-mobile" class="right hide-on-med-and-down")
-      <router-link tag="li" to="/" exact active-class="active"></router-link>
-        a(href="#") Create
-      <router-link tag="li" to="/" active-class="active"></router-link>
-        a(href="#") List
+      li
+        <router-link to="/" exact active-class="active">Create</router-link>
+      li
+        <router-link to="/list" active-class="active">List</router-link>
 
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
 </template>
+
+<style lang="sass" scoped>
+nav
+  padding: 0 1rem
+</style>
