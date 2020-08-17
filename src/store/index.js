@@ -39,7 +39,6 @@ export default createStore({
     updateTask ({ commit }, task) {
       commit('updateTask', task)
     }
-
   },
 
   modules: {

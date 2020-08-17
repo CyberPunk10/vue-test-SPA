@@ -1,25 +1,25 @@
 <template lang="pug">
 .row
   .col.s6.offset-s3
-    h1 Creted task
+    h3 Новая задача
 
     form(@submit.prevent="submitHandler")
       .input-field
         input(id="title" v-model="title" type="text" class="validate" required)
-        label(for="title") {{ title }}
-        span(class="helper-text" data-error="Title is required" data-success=":)") Helper text
-
-      <div class="chips chips-placeholder" ref="vueChips"></div>
+        label(for="title") Заголовок
+        span(class="helper-text" data-error="Введите заголовок" data-success=":)")
 
       <div class="input-field">
         <textarea v-model="description" id="description" class="materialize-textarea" maxlength="2048" rows=4></textarea>
-        <label for="description">Description</label>
+        <label for="description">Описание задачи</label>
         <span class="character-counter" style="float: right; font-size: 12px;">{{ description.length }}/2048</span>
       </div>
 
+      <div class="chips chips-placeholder" ref="vueChips"></div>
+
       <input type="text" ref="datepicker">
 
-      button(type="submit" class="btn") Create task
+      button(type="submit" class="btn") Создать задачу
 
 </template>
 
@@ -85,3 +85,8 @@ export default {
 
 }
 </script>
+
+<style lang="sass" scoped>
+button
+  margin-top: 2rem
+</style>

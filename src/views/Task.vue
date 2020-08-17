@@ -5,18 +5,26 @@
 
     form(@submit.prevent="submitHandler" class="col s8 offset-s2")
 
-      <div class="chips chips-placeholder" ref="vueChips"></div>
+      div(v-if="textOnBtn === 'Сохранить изменения'")
+        .input-field
+          textarea(v-model="description" id="description" class="materialize-textarea" maxlength="2048" rows="12") {{ description }}
+          label(for="description") Описание задачи
+          span(class="character-counter" style="float: right; font-size: 12px;") {{ description.length }}/2048
 
-      <div class="input-field">
-        <textarea v-model="description" id="description" class="materialize-textarea" maxlength="2048" rows="5">{{ description }}</textarea>
-        <label for="description">Description</label>
-        <span class="character-counter" style="float: right; font-size: 12px;">{{ description.length }}/2048</span>
-      </div>
+          div(class="chips chips-placeholder" ref="vueChips")
+
+      div(v-else)
+        p {{ description }}
+
+        p(v-for="item of task.tags.map(item => item.tag)").post-tag
+            a {{ item }}
+
+        p {{ new Date(task.date) }}
 
       <input type="text" ref="datepicker">
 
-      button(type="submit" class="btn") Update
-      button(type="submit" class="btn blue btn-complete") Complete task
+      button(type="submit" class="btn") {{ textOnBtn }}
+      button(type="submit" class="btn blue btn-complete") Завершить задачу
 
   p(v-else) Tasks not found.
 
@@ -29,7 +37,9 @@ export default {
     return {
       description: '',
       chips: null,
-      date: null
+      date: null,
+      dateForTagP: null,
+      textOnBtn: 'Изменить'
     }
   },
 
@@ -67,11 +77,19 @@ export default {
 
   methods: {
     submitHandler () {
-      this.$store.dispatch('updateTask', {
-        id: this.task.id,
-        description: this.description,
-        date: this.date.date
-      })
+      if (this.textOnBtn === 'Изменить') {
+        this.textOnBtn = 'Сохранить изменения'
+      } else {
+        this.$store.dispatch('updateTask', {
+          id: this.task.id,
+          description: this.description,
+          date: this.date.date
+          // chips: this.chips
+        })
+
+        this.textOnBtn = 'Изменить'
+        // this.$router.push('/list')
+      }
     },
 
     destroyed () {
@@ -91,7 +109,8 @@ export default {
 h4
   text-align: center
   margin: 3rem 0
-
+button
+  margin-top: 2rem
 .btn-complete
   margin-left: 1rem
 </style>

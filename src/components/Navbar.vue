@@ -4,9 +4,9 @@ nav.bg-color-vue
     <router-link to="/" class="brand-logo">Tasks</router-link>
     ul(id="nav-mobile" class="right hide-on-med-and-down")
       li
-        <router-link to="/" exact active-class="active">Create</router-link>
+        <router-link to="/" exact active-class="active">Новая задача</router-link>
       li
-        <router-link to="/list" active-class="active">List</router-link>
+        <router-link to="/list" active-class="active">Список</router-link>
 
 </template>
 
